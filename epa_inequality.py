@@ -101,7 +101,7 @@ def collect_all_years(years: list[int], min_count: int = 1) -> dict[int, np.ndar
         print(f"  Fetching {year}...", end=" ", flush=True)
         values = client.get_epa_values(year, min_count)
         if len(values) == 0:
-            print(f"no qualifying teams, skipping")
+            print("no qualifying teams, skipping")
             continue
         yearly_data[year] = np.array(values)
         print(f"{len(values)} teams")
@@ -230,7 +230,7 @@ def plot_skewness_kurtosis_over_time(yearly_data: dict[int, np.ndarray], save_pa
     ax1.set_title("FRC EPA Distribution Shape Metrics Over Time", fontsize=13)
 
     lines = l1 + l2
-    labels = [l.get_label() for l in lines]
+    labels = [line.get_label() for line in lines]
     ax1.legend(lines, labels, fontsize=11)
     ax1.grid(True, alpha=0.3)
     plt.tight_layout()
